@@ -1,0 +1,23 @@
+{
+  "name": "node-api",
+  "version": "1.0.0",
+  "description": "Base code for a nodejs REST API",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "dev": "nodemon -r dotenv/config server.js"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "esau.orozco",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "googleapis": "^66.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
+  }
+}
