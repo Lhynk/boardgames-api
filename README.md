@@ -2,7 +2,7 @@
 
 Board Game API gets the translation on Spanish for board games cards to be able to play in your mother languages using a google sheet as DB for easy handling and share.
 
-Currenlty the supported games are:
+Currently, the supported games are:
 
 - Wingspan
 - Arcadia Quest
