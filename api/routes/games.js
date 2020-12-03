@@ -1,32 +1,44 @@
 const express = require('express');
 const games = express.Router();
-const { google } = require('googleapis');
+const boardgameService = require('../../services/boardgame');
 
-games.get('/', (_req, res) => {
-  const sheets = google.sheets({ version: 'v4', auth: res.locals.auth });
-  sheets.spreadsheets.values
-    .get({
-      spreadsheetId: process.env.SHEET_ID,
-      range: process.env.GAMES_RANGE,
-    })
-    .then(
-      (result) => {
-        res.status(200).json({
-          games: mapGames(result.data.values),
-        });
-      },
-      (err) => res.status(500).json({ error: err })
+const range = 'A2:C';
+
+games.get('/', async (_req, res, next) => {
+  try {
+    const allGames = await boardgameService.getSheetInfo(
+      process.env.GAMES_RANGE,
+      res.locals.auth
     );
+
+    success(res, {
+      games: boardgameService.mapGames(allGames),
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
-function mapGames(games) {
-  return games.map((game) => {
-    return {
-      title: game[0],
-      image: game[1],
-      sheet_name: game[2],
-    };
-  });
+games.get('/:game_name', async (req, res) => {
+  let gameName = req.params['game_name'];
+  let gameRange = `${gameName}!${range}`;
+
+  try {
+    const cards = await boardgameService.getSheetInfo(
+      gameRange,
+      res.locals.auth
+    );
+
+    success(res, {
+      cards: boardgameService.mapCardInfo(cards),
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+function success(res, response) {
+  return res.status(200).json(response);
 }
 
 module.exports = games;
