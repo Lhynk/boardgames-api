@@ -19,4 +19,8 @@ app.use((_req, res, next) => {
 
 app.use('/api/games', games);
 
+app.use((error, _req, res, _next) => {
+  res.status(error['code']).json({ error: error['errors'] });
+});
+
 module.exports = app;
