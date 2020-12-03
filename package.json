@@ -1,14 +1,16 @@
 {
-  "name": "node-api",
+  "name": "boardgame-api",
   "version": "1.0.0",
-  "description": "Base code for a nodejs REST API",
+  "description": "Gets board games cards text translate to spanish",
   "main": "server.js",
   "scripts": {
     "start": "nodemon ./server.js",
     "dev": "nodemon -r dotenv/config server.js"
   },
   "keywords": [
-    "api"
+    "api",
+    "boardgame",
+    "spanish"
   ],
   "author": "esau.orozco",
   "license": "ISC",
