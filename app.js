@@ -1,5 +1,6 @@
 const express = require('express');
 const { google } = require('googleapis');
+const cors = require('cors');
 const app = express();
 
 const games = require('./api/routes/games');
@@ -10,6 +11,8 @@ const gooogle_auth = new google.auth.GoogleAuth({
   keyFile: process.env.CREDENTIALS,
   scopes: [process.env.SHEET_SCOPE],
 });
+
+app.use(cors());
 
 app.use((_req, res, next) => {
   // Sends the google auth across each request.
