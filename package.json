@@ -4,7 +4,7 @@
   "description": "Gets board games cards text translate to spanish",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./server.js",
+    "start": "node ./server.js",
     "preinstall": "node prodSetup.js",
     "local": "nodemon -r dotenv/config server.js"
   },
