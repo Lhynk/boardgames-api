@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./server.js",
-    "preinstall": "node prodSetup.js",
     "local": "nodemon -r dotenv/config server.js"
   },
   "keywords": [
