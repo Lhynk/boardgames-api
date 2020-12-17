@@ -6,7 +6,8 @@ const boardgameService = {
       return {
         title: game[0],
         image: game[1],
-        sheet_name: game[2],
+        cover_image: game[2],
+        sheet_name: game[3],
       };
     });
   },
